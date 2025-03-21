@@ -1,0 +1,57 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6060
+ * Running on http://192.168.1.34:6060
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 110-848-360
+192.168.1.25 - - [14/Mar/2025 20:55:40] "GET / HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 20:55:54] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 21:47:45] "GET / HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 21:49:55] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 21:56:11] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:03:06] "GET / HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:07:40] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:33:44] "GET / HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:35:43] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:35:43] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:39:59] "GET / HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:40:44] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:54:22] "GET / HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:54:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.1.25 - - [14/Mar/2025 22:55:03] "POST /chat HTTP/1.1" 200 -
+192.168.1.25 - - [14/Mar/2025 22:57:49] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/gianni/ia/app.py", line 2, in <module>
+    import replicate
+ModuleNotFoundError: No module named 'replicate'
+Traceback (most recent call last):
+  File "/home/gianni/ia/app.py", line 2, in <module>
+    import replicate
+ModuleNotFoundError: No module named 'replicate'
+Traceback (most recent call last):
+  File "/home/gianni/ia/app.py", line 2, in <module>
+    import replicate
+ModuleNotFoundError: No module named 'replicate'
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6060
+ * Running on http://192.168.1.39:6060
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 112-610-344
+192.168.1.54 - - [20/Mar/2025 18:17:10] "GET / HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:17:10] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.1.54 - - [20/Mar/2025 18:17:18] "POST /chat HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:17:44] "POST /chat HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:18:11] "POST /chat HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:18:47] "POST /chat HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:19:00] "POST /chat HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:19:17] "POST /chat HTTP/1.1" 200 -
+192.168.1.54 - - [20/Mar/2025 18:19:32] "POST /chat HTTP/1.1" 200 -

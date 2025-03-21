@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec GianniGPT</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        #chat-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+        }
+
+        #chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .message.user .message-content {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot .message-content {
+            background-color: #e9ecef;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        #user-input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #user-input:focus {
+            border-color: #007bff;
+        }
+
+        #send-btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Scrollbar personnalisée */
+        #chat-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chat-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <div id="user-input-container">
+            <input type="text" id="user-input" placeholder="Tapez votre message...">
+            <button id="send-btn">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        const userInput = document.getElementById("user-input");
+        const sendBtn = document.getElementById("send-btn");
+
+        sendBtn.addEventListener("click", async () => {
+            const message = userInput.value;
+            if (message.trim() === "") return;
+
+            appendMessage("Vous: " + message, "user");
+            userInput.value = "";
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    appendMessage("Erreur: " + data.error, "error");
+                } else {
+                    appendMessage("LLaMA: " + data.response, "bot");
+                }
+            } catch (error) {
+                appendMessage("Erreur: Impossible de communiquer avec le serveur", "error");
+            }
+        });
+
+        function appendMessage(text, sender) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message", sender);
+
+            const messageContent = document.createElement("div");
+            messageContent.classList.add("message-content");
+            messageContent.textContent = text;
+
+            messageElement.appendChild(messageContent);
+            chatBox.appendChild(messageElement);
+
+            // Faire défiler vers le bas pour voir le nouveau message
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
